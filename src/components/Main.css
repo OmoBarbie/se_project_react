@@ -1,0 +1,10 @@
+@font-face {
+  src: url("../assets/roboto-regular.woff") format("woff");
+  font-family: "Yellowtail";
+}
+
+.container {
+  font-family: roboto;
+  display: flex;
+  justify-content: space-around;
+}
