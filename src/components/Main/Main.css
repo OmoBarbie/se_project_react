@@ -1,13 +1,8 @@
-@font-face {
-  src: url("../assets/roboto-regular.woff") format("woff");
-  font-family: "Yellowtail";
-}
-
-.cards_list {
+.cards__list {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style-type: none;
   gap: 21px;
-
+}
