@@ -3,8 +3,11 @@
   font-family: "Yellowtail";
 }
 
-.container {
-  font-family: roboto;
+.cards_list {
   display: flex;
-  justify-content: space-around;
-}
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+
