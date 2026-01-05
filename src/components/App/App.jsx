@@ -3,6 +3,7 @@ import "./App.css";
 
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 // import Footer from "../Footer/Footer.jsx";
 // import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 // import ItemModal from "../ItemModal/ItemModal.jsx";
@@ -15,9 +16,9 @@ function App() {
         <Header />
         <Main weatherData={weatherData} />
         {/* <Footer /> */}
-        {/* <ModalWithForm />
-        <ItemModal /> */}
+        {/*<ItemModal /> */}
       </div>
+      <ModalWithForm />
     </div>
   );
 }
