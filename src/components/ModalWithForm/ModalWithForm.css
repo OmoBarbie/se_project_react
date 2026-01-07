@@ -13,6 +13,8 @@
 
 .modal_open {
   visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
 .modal__title {
   margin: 0;
