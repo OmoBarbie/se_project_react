@@ -11,8 +11,10 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 };
 
 export const filterWeatherData = (data) => {
+  console.log(data);
   const result = {};
   result.city = data.name;
-
+  // temp
+  // determine if cold/warm/hot
   return result;
 };
