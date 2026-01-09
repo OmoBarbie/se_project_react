@@ -13,7 +13,7 @@ import { defaultClothingItems } from "../../utils/clothingItems";
 function App() {
   const [weatherData, setweatherData] = useState({
     type: "",
-    temp: { F: 999, C: 999 },
+    temp: { F: 999 },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
