@@ -47,7 +47,7 @@ function App() {
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main
           weatherData={weatherData}
-          handleCardClick={handleCardClick}
+          onCardClick={handleCardClick}
           clothingItems={defaultClothingItems}
         />
         <ItemModal />
@@ -69,7 +69,7 @@ function App() {
           />
         </label>
 
-        <label htmlFor="ImageUrl" className="modal__lable">
+        <label htmlFor="ImageUrl" className="modal__label">
           Image{" "}
           <input
             type="url"
@@ -81,20 +81,32 @@ function App() {
 
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
-          <label htmlFor="Hot" className="modal__label modal__label_type_radio">
-            <input type="radio" id="Hot" className="modal__radio-input" />
+          <label htmlFor="Hot" className="modal__label_type_radio">
+            <input
+              type="radio"
+              id="Hot"
+              className="modal__radio-input"
+              name="weather"
+            />{" "}
+            Hot
           </label>
-          <label
-            htmlFor="Warm"
-            className="modal__label modal__label_type_radio"
-          >
-            <input type="radio" id="Warm" className="modal__radio-input" />
+          <label htmlFor="Warm" className="modal__label_type_radio">
+            <input
+              type="radio"
+              id="Warm"
+              className="modal__radio-input"
+              name="weather"
+            />{" "}
+            Warm
           </label>
-          <label
-            htmlFor="Cold"
-            className="modal__label modal__label_type_radio"
-          >
-            <input type="radio" id="Cold" className="modal__radio-input" />
+          <label htmlFor="Cold" className="modal__label_type_radio">
+            <input
+              type="radio"
+              id="Cold"
+              className="modal__radio-input"
+              name="weather"
+            />{" "}
+            Cold
           </label>
         </fieldset>
       </ModalWithForm>
@@ -102,6 +114,7 @@ function App() {
         activeModal={activeModal}
         card={selectedCard || {}}
         onClose={closeActiveModal}
+        isOpen={activeModal === "preview"}
       />
     </div>
   );

@@ -1,0 +1,35 @@
+.modal__content_type_image {
+  padding: 0;
+  overflow: hidden;
+  width: 498px;
+}
+
+.modal__image {
+  width: 498px;
+  height: 498px;
+  object-fit: cover;
+}
+
+.modal__footer {
+  padding: 20px;
+  margin: 0;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.modal__caption {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal__weather {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal__close_type_preview {
+  background-image: url(../../assets/itemmodalclose.png);
+}

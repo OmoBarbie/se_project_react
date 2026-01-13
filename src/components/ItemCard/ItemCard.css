@@ -7,10 +7,12 @@
   justify-content: center;
   background-color: #ffffff;
   font-size: 16px;
-  weight: 700;
+  font-weight: 700;
   overflow: hidden;
   font-family: "Cabinet Grotesk";
-}
+  /* overflow: hidden;
+  box-sizing: border-box;
+} */
 
 .card__name {
   position: absolute;
@@ -26,4 +28,6 @@
 
 .card__image {
   width: 100%;
+  height: auto;
+  display: block;
 }
