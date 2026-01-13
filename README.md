@@ -7,17 +7,17 @@ Core Functionalities
 -Component-Based Architecture
 Built using React with a structured, modular folder hierarchy
 Implemented reusable components including App, Header, Main, Footer, ItemCard, WeatherCard, and modal components
-Followed BEM methodology for consistent and maintainable CSS
+Clean separation of concerns for scalability and maintainability
 
 -Dynamic Rendering & State Management
-Renders UI elements dynamically using React state
-Manages application behavior with useState and useEffect hooks
-Updates the interface in response to user interactions without page reloads
+Uses React hooks (useState, useEffect) to manage application state
+Dynamically renders content without page reloads
+Ensures smooth UI updates based on user interactions
 
 -Modal & Form Functionality
-Implemented reusable modal components for displaying item details and forms
+Reusable modal components for displaying item details and forms
 Controlled form inputs with validation logic
-Managed modal visibility and submission state through React state
+Modal visibility managed through component state
 
 -User Interaction Flow
 Handles user actions such as opening modals, submitting forms, and interacting with item cards
@@ -25,15 +25,18 @@ Ensures predictable UI behavior across components
 
 Debugged rendering issues related to imports, component returns, and CSS visibility
 
--Responsive Layout & Styling
-Cross-browser consistency using normalize.css
-Clean UI that adapts to different screen sizes
-Technical Skills Demonstrated
+-Responsive Design & Styling
+Styled using BEM methodology for consistent, readable CSS
+Includes normalize.css for cross-browser consistency
+
+-Debugging & Refactoring
+Resolved rendering and import issues during development
+Refactored component structure to improve clarity and performance
 
 React (JSX, hooks, component lifecycle)
 JavaScript (ES6+)
 CSS (some BEM methodology, Flexbox)
-Modular project structure
+Vite
 Debugging and refactoring legacy code
 Git version control
 

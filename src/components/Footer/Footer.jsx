@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <p className="footer__author">Omotayo Oluwole</p>
+      <p className="footer__author">Developed by Omotayo Oluwole</p>
       <p className="footer__year">{year}</p>
     </footer>
   );
