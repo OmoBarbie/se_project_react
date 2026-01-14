@@ -17,4 +17,5 @@
 .footer__year {
   padding: 2px 6px;
   line-height: 20px; /* ensures text is vertically centered within 20px */
+  padding-bottom: 24px;
 }

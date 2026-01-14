@@ -19,6 +19,19 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const isNameValid = name.trim().length > 0;
+    const isImageValid = /^https?:\/\/.+/.test(imageUrl);
+    const isWeatherValid = weather !== "";
+
+    setIsValid(isNameValid && isImageValid && isWeatherValid);
+  }, [name, imageUrl, weather]);
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -58,6 +71,7 @@ function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={closeActiveModal}
+        validInput={isValid}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
@@ -65,6 +79,8 @@ function App() {
             type="text"
             className="modal__input"
             id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Name"
           />
         </label>
@@ -75,39 +91,26 @@ function App() {
             type="url"
             className="modal__input"
             id="ImageUrl"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
             placeholder="Image URL"
           />
         </label>
 
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
-          <label htmlFor="Hot" className="modal__label_type_radio">
-            <input
-              type="radio"
-              id="Hot"
-              className="modal__radio-input"
-              name="weather"
-            />{" "}
-            Hot
-          </label>
-          <label htmlFor="Warm" className="modal__label_type_radio">
-            <input
-              type="radio"
-              id="Warm"
-              className="modal__radio-input"
-              name="weather"
-            />{" "}
-            Warm
-          </label>
-          <label htmlFor="Cold" className="modal__label_type_radio">
-            <input
-              type="radio"
-              id="Cold"
-              className="modal__radio-input"
-              name="weather"
-            />{" "}
-            Cold
-          </label>
+
+          {["Hot", "Warm", "Cold"].map((type) => (
+            <label key={type} className="modal__label_type_radio">
+              <input
+                type="radio"
+                name="weather"
+                value={type}
+                onChange={(e) => setWeather(e.target.value)}
+              />
+              {type}
+            </label>
+          ))}
         </fieldset>
       </ModalWithForm>
       <ItemModal

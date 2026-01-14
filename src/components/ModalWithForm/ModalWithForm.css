@@ -92,12 +92,22 @@
   justify-content: flex-start;
   radius: 4px;
   gap: 8px;
-  opacity: 30%;
   width: 124px;
   height: 26px;
   padding: 8px 16px;
-  background-color: default;
   margin-top: 14px;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 36px;
+  color: rgb(255, 255, 255);
+}
+
+.modal__submit-base {
+  background-color: rgba(0, 0, 0);
+}
+
+.modal__submit:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  pointer: cursor;
 }
 
 .modal__legend {
