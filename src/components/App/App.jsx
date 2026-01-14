@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems";
+import WeatherCard from "../WeatherCard/WeatherCard";
 
 function App() {
   const [weatherData, setweatherData] = useState({
