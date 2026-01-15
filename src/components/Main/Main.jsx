@@ -3,8 +3,6 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
-  console.log(clothingItems);
-
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems";
 
 function App() {
-  const [weatherData, setweatherData] = useState({
+  const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
     city: "",
@@ -49,7 +49,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
-        setweatherData(filteredData);
+        setWeatherData(filteredData);
       })
       .catch(console.error);
   }, []);
@@ -82,6 +82,7 @@ function App() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
+            required
           />
         </label>
 
@@ -94,6 +95,7 @@ function App() {
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
             placeholder="Image URL"
+            required
           />
         </label>
 
@@ -103,6 +105,7 @@ function App() {
           {["Hot", "Warm", "Cold"].map((type) => (
             <label key={type} className="modal__label_type_radio">
               <input
+                required
                 type="radio"
                 name="weather"
                 value={type}

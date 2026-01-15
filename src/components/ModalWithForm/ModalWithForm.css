@@ -90,7 +90,7 @@
 .modal__submit {
   display: flex;
   justify-content: flex-start;
-  radius: 4px;
+  border-radius: 4px;
   gap: 8px;
   width: 124px;
   height: 26px;
@@ -107,10 +107,10 @@
 
 .modal__submit:hover {
   background-color: rgba(0, 0, 0, 0.6);
-  pointer: cursor;
+  cursor: pointer;
 }
 
 .modal__legend {
   margin-bottom: 12px;
-  maegin-top: 28px;
+  margin-top: 28px;
 }
