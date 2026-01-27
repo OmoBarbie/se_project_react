@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants.js";
@@ -54,74 +55,84 @@ function App() {
       .catch(console.error);
   }, []);
 
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
+  };
+
   return (
     <div className="page">
-      <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main
-          weatherData={weatherData}
-          onCardClick={handleCardClick}
-          clothingItems={defaultClothingItems}
-        />
-        <ItemModal />
-      </div>
-      <Footer />
-      <ModalWithForm
-        title="New garment"
-        buttonText="Add garment"
-        activeModal={activeModal}
-        onClose={closeActiveModal}
-        validInput={isValid}
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <label htmlFor="name" className="modal__label">
-          Name{" "}
-          <input
-            type="text"
-            className="modal__input"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            required
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Main
+            weatherData={weatherData}
+            onCardClick={handleCardClick}
+            clothingItems={defaultClothingItems}
           />
-        </label>
+          <ItemModal />
+        </div>
+        <Footer />
+        <ModalWithForm
+          title="New garment"
+          buttonText="Add garment"
+          activeModal={activeModal}
+          onClose={closeActiveModal}
+          validInput={isValid}
+        >
+          <label htmlFor="name" className="modal__label">
+            Name{" "}
+            <input
+              type="text"
+              className="modal__input"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              required
+            />
+          </label>
 
-        <label htmlFor="ImageUrl" className="modal__label">
-          Image{" "}
-          <input
-            type="url"
-            className="modal__input"
-            id="ImageUrl"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            placeholder="Image URL"
-            required
-          />
-        </label>
+          <label htmlFor="ImageUrl" className="modal__label">
+            Image{" "}
+            <input
+              type="url"
+              className="modal__input"
+              id="ImageUrl"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Image URL"
+              required
+            />
+          </label>
 
-        <fieldset className="modal__radio-buttons">
-          <legend className="modal__legend">Select the weather type:</legend>
+          <fieldset className="modal__radio-buttons">
+            <legend className="modal__legend">Select the weather type:</legend>
 
-          {["Hot", "Warm", "Cold"].map((type) => (
-            <label key={type} className="modal__label_type_radio">
-              <input
-                required
-                type="radio"
-                name="weather"
-                value={type}
-                onChange={(e) => setWeather(e.target.value)}
-              />
-              {type}
-            </label>
-          ))}
-        </fieldset>
-      </ModalWithForm>
-      <ItemModal
-        activeModal={activeModal}
-        card={selectedCard || {}}
-        onClose={closeActiveModal}
-        isOpen={activeModal === "preview"}
-      />
+            {["Hot", "Warm", "Cold"].map((type) => (
+              <label key={type} className="modal__label_type_radio">
+                <input
+                  required
+                  type="radio"
+                  name="weather"
+                  value={type}
+                  onChange={(e) => setWeather(e.target.value)}
+                />
+                {type}
+              </label>
+            ))}
+          </fieldset>
+        </ModalWithForm>
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard || {}}
+          onClose={closeActiveModal}
+          isOpen={activeModal === "preview"}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
