@@ -1,64 +1,105 @@
-import { useState, useEffect } from "react";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants.js";
+
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
+import Profile from "../Profile/Profile.jsx";
+import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import Footer from "../Footer/Footer.jsx";
-import { defaultClothingItems } from "../../utils/clothingItems";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
     city: "",
+    isDay: true,
+    condition: "",
   });
+
+  const [clothingItems, setClothingItems] = useState([]);
+
   const [activeModal, setActiveModal] = useState("");
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  useEffect(() => {
-    const isNameValid = name.trim().length > 0;
-    const isImageValid = /^https?:\/\/.+/.test(imageUrl);
-    const isWeatherValid = weather !== "";
-
-    setIsValid(isNameValid && isImageValid && isWeatherValid);
-  }, [name, imageUrl, weather]);
+  const closeAllModals = () => {
+    setActiveModal("");
+    setSelectedCard(null);
+  };
 
   const handleCardClick = (card) => {
-    setActiveModal("preview");
     setSelectedCard(card);
+    setActiveModal("preview");
   };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
 
-  const closeActiveModal = () => {
-    setActiveModal("");
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   };
 
   useEffect(() => {
+    const isNameValid = name.trim().length > 0;
+    const isImageValid = imageUrl.trim().length > 0;
+    const isWeatherValid = weather !== "";
+
+    setIsValid(isNameValid && isImageValid && isWeatherValid);
+  }, [name, imageUrl, weather]);
+
+  useEffect(() => {
     getWeather(coordinates, APIkey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
+      .then((data) => setWeatherData(filterWeatherData(data)))
       .catch(console.error);
   }, []);
 
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  useEffect(() => {
+    getItems().then(setClothingItems).catch(console.error);
+  }, []);
 
-  const handleToggleSwitchChange = () => {
-    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
+  const handleAddItemSubmit = (e) => {
+    e.preventDefault();
+
+    const newItem = {
+      name,
+      imageUrl,
+      weather: weather.toLowerCase(),
+    };
+
+    addItem(newItem)
+      .then((createdItem) => {
+        setClothingItems((prev) => [createdItem, ...prev]);
+
+        setName("");
+        setImageUrl("");
+        setWeather("");
+        closeAllModals();
+      })
+      .catch(console.error);
+  };
+
+  const handleDeleteItem = (item) => {
+    deleteItem(item._id)
+      .then(() => {
+        setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
+        closeAllModals();
+      })
+      .catch(console.error);
   };
 
   return (
@@ -68,23 +109,50 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            onCardClick={handleCardClick}
-            clothingItems={defaultClothingItems}
-          />
-          <ItemModal />
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  clothingItems={clothingItems}
+                  onCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  onCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
+          </Routes>
+
+          <Footer />
         </div>
-        <Footer />
+
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={closeAllModals}
+          onDeleteCard={handleDeleteItem}
+        />
+
         <ModalWithForm
           title="New garment"
           buttonText="Add garment"
           activeModal={activeModal}
-          onClose={closeActiveModal}
+          onClose={closeAllModals}
           validInput={isValid}
+          onSubmit={handleAddItemSubmit}
         >
           <label htmlFor="name" className="modal__label">
-            Name{" "}
+            Name
             <input
               type="text"
               className="modal__input"
@@ -96,12 +164,12 @@ function App() {
             />
           </label>
 
-          <label htmlFor="ImageUrl" className="modal__label">
-            Image{" "}
+          <label htmlFor="imageUrl" className="modal__label">
+            Image
             <input
               type="url"
               className="modal__input"
-              id="ImageUrl"
+              id="imageUrl"
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Image URL"
@@ -112,13 +180,14 @@ function App() {
           <fieldset className="modal__radio-buttons">
             <legend className="modal__legend">Select the weather type:</legend>
 
-            {["Hot", "Warm", "Cold"].map((type) => (
+            {["hot", "warm", "cold"].map((type) => (
               <label key={type} className="modal__label_type_radio">
                 <input
                   required
                   type="radio"
                   name="weather"
                   value={type}
+                  checked={weather === type}
                   onChange={(e) => setWeather(e.target.value)}
                 />
                 {type}
@@ -126,12 +195,6 @@ function App() {
             ))}
           </fieldset>
         </ModalWithForm>
-        <ItemModal
-          activeModal={activeModal}
-          card={selectedCard || {}}
-          onClose={closeActiveModal}
-          isOpen={activeModal === "preview"}
-        />
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

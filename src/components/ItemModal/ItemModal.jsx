@@ -1,11 +1,11 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, onClose, card }) {
-  // Guard clause for missing card data
+function ItemModal({ activeModal, onClose, card, onDeleteCard }) {
+  if (!card) return null;
 
-  if (!card) {
-    return null;
-  }
+  const handleDeleteClick = () => {
+    onDeleteCard(card);
+  };
 
   return (
     <div className={`modal ${activeModal === "preview" ? "modal_open" : ""}`}>
@@ -16,10 +16,20 @@ function ItemModal({ activeModal, onClose, card }) {
           className="modal__close modal__close_type_preview"
         ></button>
 
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
 
         <div className="modal__footer">
-          <h2 className="modal__caption">{card.name}</h2>
+          <div className="modal__footer-top">
+            <h2 className="modal__caption">{card.name}</h2>
+
+            <button
+              type="button"
+              className="modal__delete-button"
+              onClick={handleDeleteClick}
+            >
+              Delete item
+            </button>
+          </div>
 
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>

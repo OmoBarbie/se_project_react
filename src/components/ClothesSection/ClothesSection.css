@@ -1,0 +1,16 @@
+.clothes-section {
+  flex: 1;
+}
+.clothes-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.clothes-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
