@@ -7,6 +7,9 @@
   display: inline-block;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+  margin-left: auto;
+  box-sizing: border-box;
 }
 
 .toggle-switch__checkbox {
@@ -15,8 +18,30 @@
 
 .toggle-switch__circle {
   background-color: black;
-  width: 18px;
+  width: 28px;
   height: 28px;
   position: absolute;
   border-radius: 50%;
+  /* top: -2px;
+  left: -5px; */
+  color: #7e7e7e;
+  transition: all 0.3s;
+}
+
+.toggle-switch__text {
+  color: #7e7e7e;
+  position: absolute;
+  top: 5px;
+}
+
+.toggle-switch__text_F {
+  left: 9px;
+}
+
+.toggle-switch__text_C {
+  right: 9px;
+}
+
+..toggle-switch__checkbox:checked ~ .toggle-switch__circle {
+  left: 28px;
 }
