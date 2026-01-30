@@ -25,7 +25,6 @@ function App() {
   });
 
   const [clothingItems, setClothingItems] = useState([]);
-
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -112,6 +111,7 @@ function App() {
 
           <Routes>
             <Route
+              exact
               path="/"
               element={
                 <Main
@@ -122,6 +122,7 @@ function App() {
               }
             />
             <Route
+              exact
               path="/profile"
               element={
                 <Profile
