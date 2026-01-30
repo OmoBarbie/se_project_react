@@ -15,9 +15,9 @@ function ToggleSwitch() {
         onChange={handleToggleSwitchChange}
         checked={currentTemperatureUnit === "C"}
       />
-      <span className="toggle-switch__slider" />
-      <span className="toggle-switch__temp-f">F</span>
-      <span className="toggle-switch__temp-c">C</span>
+      <span className="toggle-switch__circle" />
+      <span className="toggle-switch__text toggle-switch__text_F">F</span>
+      <span className="toggle-switch__text toggle-switch__text_C">C</span>
     </label>
   );
 }

@@ -12,3 +12,11 @@
 .toggle-switch__checkbox {
   opacity: 0;
 }
+
+.toggle-switch__circle {
+  background-color: black;
+  width: 18px;
+  height: 28px;
+  position: absolute;
+  border-radius: 50%;
+}
