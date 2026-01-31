@@ -27,7 +27,6 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
-
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const [name, setName] = useState("");

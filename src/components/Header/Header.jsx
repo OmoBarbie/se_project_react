@@ -12,24 +12,31 @@ function Header({ handleAddClick, weatherData }) {
 
   return (
     <header className="header">
-      <Link to="/">
-        <img className="header__logo" src={logo} alt="WTWR logo" />
-      </Link>
+      <div className="header-section">
+        <Link to="/">
+          <img className="header__logo" src={logo} alt="WTWR logo" />
+        </Link>
 
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p>
+        <p className="header__date-and-location">
+          {currentDate}, {weatherData.city}
+        </p>
+      </div>
+      <div className="header-section">
+        <ToggleSwitch />
 
-      <ToggleSwitch />
+        <button onClick={handleAddClick} className="header__add-clothes-btn">
+          + Add Clothes
+        </button>
 
-      <button onClick={handleAddClick} className="header__add-clothes-btn">
-        + Add Clothes
-      </button>
-
-      <Link to="/profile" className="header__user-container">
-        <p className="header__username">Terrance Tegegne</p>
-        <img src={avatar} alt="Terrance Tegegne" className="username__avatar" />
-      </Link>
+        <Link to="/profile" className="header__user-container">
+          <p className="header__username">Terrance Tegegne</p>
+          <img
+            src={avatar}
+            alt="Terrance Tegegne"
+            className="username__avatar"
+          />
+        </Link>
+      </div>
     </header>
   );
 }

@@ -14,7 +14,6 @@ export const filterWeatherData = (data) => {
 
   result.city = data.name;
 
-  // ✅ Keep your existing shape: result.temp
   result.temp = {
     F: tempF,
     C: tempC,
