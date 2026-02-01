@@ -8,9 +8,12 @@
 }
 .clothes-section__list {
   list-style: none;
-  padding: 0;
-  margin: 20px 0 0;
+  padding: 0 0 41px 0;
+  justify-content: center;
+  justify-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 22px;
+  width: 100%;
+  grid-auto-rows: 304px;
 }

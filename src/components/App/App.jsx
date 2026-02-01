@@ -8,6 +8,7 @@ import Main from "../Main/Main.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -70,22 +71,18 @@ function App() {
     getItems().then(setClothingItems).catch(console.error);
   }, []);
 
-  const handleAddItemSubmit = (e) => {
-    e.preventDefault();
-
+  const handleAddItemSubmit = (values, resetForm) => {
     const newItem = {
-      name,
-      imageUrl,
-      weather: weather.toLowerCase(),
+      name: values.name,
+      imageUrl: values.imageUrl,
+      weather: values.weather.toLowerCase(),
     };
 
     addItem(newItem)
       .then((createdItem) => {
         setClothingItems((prev) => [createdItem, ...prev]);
 
-        setName("");
-        setImageUrl("");
-        setWeather("");
+        resetForm();
         closeAllModals();
       })
       .catch(console.error);
@@ -135,66 +132,18 @@ function App() {
 
           <Footer />
         </div>
-
+        <AddItemModal
+          onCloseModal={closeAllModals}
+          onAddItem={handleAddItemSubmit}
+          isOpen={activeModal === "add-garment"}
+          activeModal={activeModal}
+        />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeAllModals}
           onDeleteCard={handleDeleteItem}
         />
-
-        <ModalWithForm
-          title="New garment"
-          buttonText="Add garment"
-          activeModal={activeModal}
-          onClose={closeAllModals}
-          validInput={isValid}
-          onSubmit={handleAddItemSubmit}
-        >
-          <label htmlFor="name" className="modal__label">
-            Name
-            <input
-              type="text"
-              className="modal__input"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              required
-            />
-          </label>
-
-          <label htmlFor="imageUrl" className="modal__label">
-            Image
-            <input
-              type="url"
-              className="modal__input"
-              id="imageUrl"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Image URL"
-              required
-            />
-          </label>
-
-          <fieldset className="modal__radio-buttons">
-            <legend className="modal__legend">Select the weather type:</legend>
-
-            {["hot", "warm", "cold"].map((type) => (
-              <label key={type} className="modal__label_type_radio">
-                <input
-                  required
-                  type="radio"
-                  name="weather"
-                  value={type}
-                  checked={weather === type}
-                  onChange={(e) => setWeather(e.target.value)}
-                />
-                {type}
-              </label>
-            ))}
-          </fieldset>
-        </ModalWithForm>
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );
