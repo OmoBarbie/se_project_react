@@ -3,8 +3,8 @@ import { useState } from "react";
 export function useForm(defaultValues) {
   const [values, setValues] = useState(defaultValues);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 

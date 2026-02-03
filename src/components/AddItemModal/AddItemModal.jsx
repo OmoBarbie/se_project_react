@@ -2,15 +2,15 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-function AddItemModal({ onCloseModal, onAddItem, isOpen, activeModal }) {
+function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
   const { values, handleChange, handleReset } = useForm({
     name: "",
     imageUrl: "",
     weather: "",
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(evt) {
+    evt.preventDefault();
     onAddItem(values, handleReset);
   }
 
@@ -21,13 +21,15 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen, activeModal }) {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      activeModal={activeModal}
+      name="add-garment"
+      autoComplete="off"
     >
       <label className="modal__label">
         Name
         <input
           type="text"
           name="name"
+          autoComplete="off"
           className="modal__input"
           value={values.name}
           onChange={handleChange}
@@ -40,6 +42,7 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen, activeModal }) {
         <input
           type="url"
           name="imageUrl"
+          autoComplete="off"
           className="modal__input"
           value={values.imageUrl}
           onChange={handleChange}
@@ -49,6 +52,7 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen, activeModal }) {
 
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
+
         <label className="modal__radio-label">
           <input
             type="radio"

@@ -7,7 +7,6 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Footer from "../Footer/Footer.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 
@@ -30,11 +29,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
-  const [isValid, setIsValid] = useState(false);
-
   const closeAllModals = () => {
     setActiveModal("");
     setSelectedCard(null);
@@ -52,14 +46,6 @@ function App() {
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   };
-
-  useEffect(() => {
-    const isNameValid = name.trim().length > 0;
-    const isImageValid = imageUrl.trim().length > 0;
-    const isWeatherValid = weather !== "";
-
-    setIsValid(isNameValid && isImageValid && isWeatherValid);
-  }, [name, imageUrl, weather]);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -81,7 +67,6 @@ function App() {
     addItem(newItem)
       .then((createdItem) => {
         setClothingItems((prev) => [createdItem, ...prev]);
-
         resetForm();
         closeAllModals();
       })
@@ -107,7 +92,6 @@ function App() {
 
           <Routes>
             <Route
-              exact
               path="/"
               element={
                 <Main
@@ -118,7 +102,6 @@ function App() {
               }
             />
             <Route
-              exact
               path="/profile"
               element={
                 <Profile
@@ -132,12 +115,13 @@ function App() {
 
           <Footer />
         </div>
+
         <AddItemModal
           onCloseModal={closeAllModals}
           onAddItem={handleAddItemSubmit}
           isOpen={activeModal === "add-garment"}
-          activeModal={activeModal}
         />
+
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
