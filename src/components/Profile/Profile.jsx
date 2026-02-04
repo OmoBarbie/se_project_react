@@ -4,14 +4,14 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Profile({ clothingItems, onCardClick, handleAddClick }) {
   return (
-    <div className="profile">
+    <section className="profile">
       <SideBar />
       <ClothesSection
         clothingItems={clothingItems}
         onCardClick={onCardClick}
         handleAddClick={handleAddClick}
       />
-    </div>
+    </section>
   );
 }
 

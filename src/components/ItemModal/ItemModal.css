@@ -11,25 +11,51 @@
 }
 
 .modal__footer {
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   margin: 0;
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .modal__caption {
   font-size: 20px;
   font-weight: 700;
+  margin: 0;
 }
 
 .modal__weather {
   font-size: 20px;
   font-weight: 700;
+  margin: 0;
 }
 
 .modal__close_type_preview {
   background-image: url(../../assets/itemmodalclose.png);
+}
+
+.modal__delete-btn {
+  margin: 0 0 0 auto;
+  color: #ff4d00;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal__footer-top .modal__delete-btn {
+  flex-shrink: 0;
+}
+
+.modal__footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

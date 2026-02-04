@@ -1,44 +1,64 @@
 import { Link } from "react-router-dom";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
-import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
-import ToggleSwitch from "../ToggleSwitch//ToggleSwitch";
+import "./Navigation.css";
+import logoPath from "../../images/logo.svg";
+import avatarDefault from "../../assets/avatar.png";
 
-function Header({ handleAddClick, weatherData }) {
+const Header = ({ weatherData, handleAddClick, paased_username }) => {
+  if (!weatherData) return null;
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
+  const username = paased_username || "";
+  const avatar = avatarDefault;
+
   return (
     <header className="header">
-      <div className="header-section">
+      <div className="header__container">
         <Link to="/">
-          <img className="header__logo" src={logo} alt="WTWR logo" />
+          <img src={logoPath} alt="WTWR Logo" className="header__logo" />
         </Link>
 
-        <p className="header__date-and-location">
+        <p className="header__date">
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header-section">
-        <ToggleSwitch />
 
-        <button onClick={handleAddClick} className="header__add-clothes-btn">
-          + Add Clothes
-        </button>
+      <nav className="navigation">
+        <ul className="navigation__container">
+          <ToggleSwitch />
 
-        <Link to="/profile" className="header__user-container">
-          <p className="header__username">Terrance Tegegne</p>
-          <img
-            src={avatar}
-            alt="Terrance Tegegne"
-            className="username__avatar"
-          />
-        </Link>
-      </div>
+          <li>
+            <button onClick={handleAddClick} className="navigation__button">
+              + Add clothes
+            </button>
+          </li>
+
+          <li>
+            <Link to="/profile" className="navigation__link">
+              {username}
+
+              {avatar ? (
+                <img
+                  className="navigation__user"
+                  src={avatar}
+                  alt="user avatar"
+                />
+              ) : (
+                <span className="navigation__user navigation__user_type_none">
+                  {username?.toUpperCase().charAt(0) || ""}
+                </span>
+              )}
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
-}
+};
 
 export default Header;

@@ -1,10 +1,23 @@
-.sidebar {
+.sidebar__profile {
   display: flex;
+  /* flex-direction: row-reverse; */
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 .sidebar__avatar {
+  margin-left: 12px;
+  flex: 0 0 40px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar__username {
+  margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+  white-space: nowrap;
 }
