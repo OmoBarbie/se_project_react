@@ -4,6 +4,7 @@
   padding: 0;
   width: 100%;
   max-width: 56px;
+  cursor: pointer;
 }
 
 .toggle-switch__label {

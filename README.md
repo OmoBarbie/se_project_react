@@ -33,12 +33,15 @@ Includes normalize.css for cross-browser consistency
 Resolved rendering and import issues during development
 Refactored component structure to improve clarity and performance
 
+-Technilogies USED
 React (JSX, hooks, component lifecycle)
+Reacr Router v6, ReactContext API
 JavaScript (ES6+)
 CSS (some BEM methodology, Flexbox)
 Vite
 Debugging and refactoring legacy code
 Custom Hooks
+json-server
 Git version control
 
 FEATURES
@@ -83,3 +86,41 @@ https://github.com/OmoBarbie/se_project_react
 
 Project 10. Checklist 3
 The code is well-formatted using the Prettier.
+
+## Screenshots
+
+### Home Page
+
+Home (./screenshots/Homepage.png)
+
+### Temperature Toggle
+
+Fahrenheit and Celsius (./screenshots/Toggleswitch.qt)
+
+### Header
+
+Heade r(./screenshots/Header.png)
+
+### Header Full View
+
+Header Full View (./screenshots/HeaderFullView.png)
+
+### WeatherCard
+
+Weather Card (./screenshots/WeatherCard.png)
+
+### Profile Page
+
+Profile (./screenshots/ProfilePageClothesCardRendering.qt)
+
+### Cards Rendered
+
+Cards Rendered (./screenshots/CardsRendere.qt)
+
+### Footer
+
+Footer (./screenshots/Footer.png)
+
+### Mobile View
+
+Mobile (./screenshots/Mobileview.png)
