@@ -38,7 +38,41 @@ JavaScript (ES6+)
 CSS (some BEM methodology, Flexbox)
 Vite
 Debugging and refactoring legacy code
+Custom Hooks
 Git version control
+
+FEATURES
+Temperature Unit Toggle
+-Users can switch between Fahrenheit and Celsius using a custom toggle switch.
+-The temperature unit is managed globally using React Context and updates all temperature displays instantly.
+
+Weather Integration
+-The app fetches live weather data using the OpenWeather API and displays:
+current temperature
+weather condition
+day or night visuals
+Routing
+React Router provides two main views:
+Home page (weather + recommended clothing)
+Profile page (all clothing items)
+Navigation is handled without page reloads.
+Clothing Management
+Users can:
+add new clothing items through a modal form
+delete items with confirmation
+view items in a preview modal
+
+All items are stored and retrieved from a mock backend using json-server.
+Controlled Forms
+Forms use a custom useForm hook to:
+manage input values
+validate fields
+reset after submission
+Mock Backend API
+The project uses json-server to simulate backend behavior with:
+GET /items
+POST /items
+DELETE /items/:id
 
 Pictures, GIFs, or screenshots that detail project features (highly
 recommended)
