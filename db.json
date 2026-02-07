@@ -1,12 +1,6 @@
 {
   "items": [
     {
-      "_id": 12,
-      "name": "Skirt",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
-    },
-    {
       "_id": 13,
       "name": "Sneakers",
       "weather": "warm",
@@ -31,18 +25,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "Omotayo Daniel",
-      "imageUrl": "https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=1408&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "weather": "cold",
-      "_id": 22
-    },
-    {
-      "name": "Omotayo Daniel",
-      "imageUrl": "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "weather": "cold",
-      "_id": 26
-    },
-    {
       "name": "Omotayo ",
       "imageUrl": "https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "weather": "cold",
@@ -53,6 +35,12 @@
       "imageUrl": "https://media.istockphoto.com/id/2211941777/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E5%88%86%E9%9B%A2%E3%81%95%E3%82%8C%E3%81%9F%E3%83%99%E3%83%BC%E3%82%B8%E3%83%A5%E3%81%AE%E3%83%97%E3%83%AA%E3%83%BC%E3%83%84%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%91%E3%83%AC%E3%83%AB.jpg?s=1024x1024&w=is&k=20&c=8Wfb6lQ_aQFmYSWqgHnMqXUGiT3zzBYI4VmawM2scIg=",
       "weather": "hot",
       "_id": 29
+    },
+    {
+      "name": "Test",
+      "imageUrl": "https://images.unsplash.com/photo-1720884413532-59289875c3e1?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "weather": "warm",
+      "_id": 30
     }
   ]
 }

@@ -5,7 +5,7 @@ import "./Navigation.css";
 import logoPath from "../../images/logo.svg";
 import avatarDefault from "../../assets/avatar.png";
 
-const Header = ({ weatherData, handleAddClick, paased_username }) => {
+const Header = ({ weatherData, handleAddClick, passedUsername }) => {
   if (!weatherData) return null;
 
   const currentDate = new Date().toLocaleString("default", {
@@ -13,7 +13,7 @@ const Header = ({ weatherData, handleAddClick, paased_username }) => {
     day: "numeric",
   });
 
-  const username = paased_username || "";
+  const username = passedUsername || "";
   const avatar = avatarDefault;
 
   return (

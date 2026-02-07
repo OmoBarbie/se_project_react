@@ -1,27 +1,35 @@
-import React from "react";
+import { useContext } from "react";
 import "./Main.css";
-import WeatherCard from "../WeatherCard/WeatherCard";
-import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import ItemCard from "../ItemCard/ItemCard";
+import WeatherCard from "../WeatherCard/WeatherCard";
 
-function Main({ weatherData, clothingItems, onCardClick }) {
-  const { currentTemperatureUnit } = React.useContext(
-    CurrentTemperatureUnitContext
-  );
+const Main = ({ weatherData, clothingItems, onCardClick }) => {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  if (!weatherData) return null;
 
   return (
-    <main>
+    <main className="main">
       <WeatherCard weatherData={weatherData} />
-      <section className="cards">
-        <p className="cards__text">
-          Today is{" "}
-          {Math.round(weatherData?.temp?.[currentTemperatureUnit] ?? 0)}&deg;
-          {currentTemperatureUnit}/ You may want to wear:
-        </p>
 
-        <ul className="cards__list">
+      <section className="main__clothes">
+        <div className="main__info">
+          <div className="main__description-container">
+            <p className="main__description">
+              Today is {Math.round(weatherData.temp[currentTemperatureUnit])}°
+              {currentTemperatureUnit} and it is {weatherData.type}
+            </p>
+
+            <p className="main__description_slash"> / </p>
+
+            <p className="main__description">You may want to wear:</p>
+          </div>
+        </div>
+
+        <ul className="main__items">
           {clothingItems
-            .filter((item) => item.weather.toLowerCase() === weatherData.type)
+            .filter((item) => item.weather === weatherData.type)
             .map((item) => (
               <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
             ))}
@@ -29,6 +37,6 @@ function Main({ weatherData, clothingItems, onCardClick }) {
       </section>
     </main>
   );
-}
+};
 
 export default Main;
