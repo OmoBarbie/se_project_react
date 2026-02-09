@@ -4,6 +4,7 @@ import "./Header.css";
 import "./Navigation.css";
 import logoPath from "../../images/logo.svg";
 import avatarDefault from "../../assets/avatar.png";
+// import menu from "../../assets/menu.png";
 
 const Header = ({ weatherData, handleAddClick, passedUsername }) => {
   if (!weatherData) return null;

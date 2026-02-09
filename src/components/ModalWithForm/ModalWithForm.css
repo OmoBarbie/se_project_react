@@ -114,3 +114,10 @@
   margin-bottom: 12px;
   margin-top: 28px;
 }
+
+@media screen and (max-width: 768px) {
+  .modal_open {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
