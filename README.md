@@ -87,40 +87,6 @@ https://github.com/OmoBarbie/se_project_react
 Project 10. Checklist 3
 The code is well-formatted using the Prettier.
 
-## Screenshots
+### Demo Link
 
-### Home Page
-
-Home (./screenshots/Homepage.png)
-
-### Temperature Toggle
-
-Fahrenheit and Celsius (./screenshots/Toggleswitch.qt)
-
-### Header
-
-Heade r(./screenshots/Header.png)
-
-### Header Full View
-
-Header Full View (./screenshots/HeaderFullView.png)
-
-### WeatherCard
-
-Weather Card (./screenshots/WeatherCard.png)
-
-### Profile Page
-
-Profile (./screenshots/ProfilePageClothesCardRendering.qt)
-
-### Cards Rendered
-
-Cards Rendered (./screenshots/CardsRendere.qt)
-
-### Footer
-
-Footer (./screenshots/Footer.png)
-
-### Mobile View
-
-Mobile (./screenshots/Mobileview.png)
+https://www.loom.com/share/5b05fddda60d45bb9e8e2ec498961640
