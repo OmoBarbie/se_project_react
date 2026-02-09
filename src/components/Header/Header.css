@@ -37,6 +37,9 @@
   .header {
     height: px;
     margin-bottom: 28px;
+    /* background-image: url(../../assets/menu.png);
+    background-color: transparent;
+    background-repeat: no-repeat; */
   }
 }
 

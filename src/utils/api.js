@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-const request = (url, options) => {
+export const request = (url, options) => {
   return fetch(url, options).then((res) => {
     if (!res.ok) return Promise.reject(`Error: ${res.status}`);
 
