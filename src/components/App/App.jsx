@@ -74,9 +74,18 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
-    deleteItem(item._id)
+    const itemId = item?.id ?? item?._id;
+
+    if (!itemId) {
+      console.error("Delete failed: item has no id/_id", item);
+      return;
+    }
+
+    deleteItem(itemId)
       .then(() => {
-        setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
+        setClothingItems((prev) =>
+          prev.filter((i) => (i.id ?? i._id) !== itemId),
+        );
         closeAllModals();
       })
       .catch(console.error);

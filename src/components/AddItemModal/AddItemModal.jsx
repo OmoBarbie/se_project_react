@@ -1,17 +1,18 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../hooks/useForm";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
-  const { values, handleChange, handleReset } = useForm({
-    name: "",
-    imageUrl: "",
-    weather: "",
-  });
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormWithValidation({
+      name: "",
+      imageUrl: "",
+      weather: "",
+    });
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values, handleReset);
+    onAddItem(values, resetForm);
   }
 
   return (
@@ -23,6 +24,7 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
       onSubmit={handleSubmit}
       name="add-garment"
       autoComplete="off"
+      isSubmitDisabled={!isValid}
     >
       <label className="modal__label">
         Name
@@ -35,6 +37,7 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           onChange={handleChange}
           required
         />
+        {errors.name && <span className="modal__error">{errors.name}</span>}
       </label>
 
       <label className="modal__label">
@@ -48,6 +51,9 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           onChange={handleChange}
           required
         />
+        {errors.imageUrl && (
+          <span className="modal__error">{errors.imageUrl}</span>
+        )}
       </label>
 
       <fieldset className="modal__radio-buttons">
@@ -86,6 +92,9 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           />
           Cold
         </label>
+        {errors.weather && (
+          <span className="modal__error">{errors.weather}</span>
+        )}
       </fieldset>
     </ModalWithForm>
   );
