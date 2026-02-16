@@ -3,15 +3,29 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
-  const { values, errors, isValid, handleChange, resetForm } =
-    useFormWithValidation({
-      name: "",
-      imageUrl: "",
-      weather: "",
-    });
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmitAttempt,
+    resetForm,
+    submitted,
+    setSubmitted,
+  } = useFormWithValidation({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
+
+  // Reset submit state when modal opens (so errors don't show immediately next time)
+  React.useEffect(() => {
+    if (isOpen) setSubmitted(false);
+  }, [isOpen, setSubmitted]);
 
   function handleSubmit(evt) {
-    evt.preventDefault();
+    const ok = handleSubmitAttempt(evt); // prevents default + validates all + fills errors
+    if (!ok) return;
+
     onAddItem(values, resetForm);
   }
 
@@ -24,7 +38,7 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
       onSubmit={handleSubmit}
       name="add-garment"
       autoComplete="off"
-      isSubmitDisabled={!isValid}
+      isSubmitDisabled={false}
     >
       <label className="modal__label">
         Name
@@ -32,12 +46,21 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           type="text"
           name="name"
           autoComplete="off"
-          className="modal__input"
+          className={`modal__input ${
+            submitted && errors.name ? "modal__input_error" : ""
+          }`}
           value={values.name}
           onChange={handleChange}
           required
+          minLength="2"
         />
-        {errors.name && <span className="modal__error">{errors.name}</span>}
+        <span
+          className={`modal__error ${
+            submitted && errors.name ? "modal__error_visible" : ""
+          }`}
+        >
+          {errors.name}
+        </span>
       </label>
 
       <label className="modal__label">
@@ -46,14 +69,20 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           type="url"
           name="imageUrl"
           autoComplete="off"
-          className="modal__input"
+          className={`modal__input ${
+            submitted && errors.imageUrl ? "modal__input_error" : ""
+          }`}
           value={values.imageUrl}
           onChange={handleChange}
           required
         />
-        {errors.imageUrl && (
-          <span className="modal__error">{errors.imageUrl}</span>
-        )}
+        <span
+          className={`modal__error ${
+            submitted && errors.imageUrl ? "modal__error_visible" : ""
+          }`}
+        >
+          {errors.imageUrl}
+        </span>
       </label>
 
       <fieldset className="modal__radio-buttons">
@@ -92,9 +121,14 @@ function AddItemModal({ onCloseModal, onAddItem, isOpen }) {
           />
           Cold
         </label>
-        {errors.weather && (
-          <span className="modal__error">{errors.weather}</span>
-        )}
+
+        <span
+          className={`modal__error ${
+            submitted && errors.weather ? "modal__error_visible" : ""
+          }`}
+        >
+          {errors.weather}
+        </span>
       </fieldset>
     </ModalWithForm>
   );

@@ -59,7 +59,7 @@
   border: 0;
   box-sizing: border-box;
   margin-top: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   border-bottom: 1px solid black;
   padding-bottom: 4px;
 }
@@ -113,6 +113,22 @@
 .modal__legend {
   margin-bottom: 12px;
   margin-top: 28px;
+}
+
+.modal__input_error {
+  border-bottom: 1px solid #e53935;
+}
+
+.modal__error {
+  color: #e53935;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 6px; /* prevents overlap */
+  display: none;
+}
+
+.modal__error_visible {
+  display: block;
 }
 
 @media screen and (max-width: 768px) {
