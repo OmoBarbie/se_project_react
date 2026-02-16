@@ -11,7 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
@@ -48,9 +48,33 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((data) => setWeatherData(filterWeatherData(data)))
-      .catch(console.error);
+    // Get user's location and fetch weather
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const coordinates = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          getWeather(coordinates, APIkey)
+            .then((data) => setWeatherData(filterWeatherData(data)))
+            .catch(console.error);
+        },
+        (error) => {
+          console.warn("Geolocation failed, using default coordinates:", error);
+          // Fall back to default coordinates
+          getWeather(defaultCoordinates, APIkey)
+            .then((data) => setWeatherData(filterWeatherData(data)))
+            .catch(console.error);
+        },
+      );
+    } else {
+      console.warn("Geolocation not supported, using default coordinates");
+      // Geolocation not supported, use default
+      getWeather(defaultCoordinates, APIkey)
+        .then((data) => setWeatherData(filterWeatherData(data)))
+        .catch(console.error);
+    }
   }, []);
 
   useEffect(() => {

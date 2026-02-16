@@ -1,72 +1,47 @@
 export const weatherOptions = [
   {
+    condition: "Clear",
     day: true,
-    condition: "clear",
     url: new URL("../assets/day/clear.png", import.meta.url).href,
   },
   {
-    day: true,
-    condition: "clouds",
-    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
-  },
-  {
-    day: true,
-    condition: "fog",
-    url: new URL("../assets/day/fog.png", import.meta.url).href,
-  },
-  {
-    day: true,
-    condition: "rain",
-    url: new URL("../assets/day/rain.png", import.meta.url).href,
-  },
-  {
-    day: true,
-    condition: "snow",
-    url: new URL("../assets/day/snow.png", import.meta.url).href,
-  },
-  {
-    day: true,
-    condition: "thunderstorm",
-    url: new URL("../assets/day/storm.png", import.meta.url).href,
-  },
-
-  {
+    condition: "Clear",
     day: false,
-    condition: "clear",
     url: new URL("../assets/night/clear.png", import.meta.url).href,
   },
   {
-    day: false,
-    condition: "clouds",
-    url: new URL("../assets/night/cloudy.png", import.meta.url).href,
+    condition: "Clouds",
+    day: true,
+    url: new URL("../assets/day/clouds.png", import.meta.url).href,
   },
   {
+    condition: "Clouds",
     day: false,
-    condition: "fog",
-    url: new URL("../assets/night/fog.png", import.meta.url).href,
+    url: new URL("../assets/night/clouds.png", import.meta.url).href,
   },
   {
+    condition: "Rain",
+    day: true,
+    url: new URL("../assets/day/rain.png", import.meta.url).href,
+  },
+  {
+    condition: "Rain",
     day: false,
-    condition: "rain",
     url: new URL("../assets/night/rain.png", import.meta.url).href,
   },
   {
-    day: false,
-    condition: "snow",
-    url: new URL("../assets/night/snow.png", import.meta.url).href,
+    condition: "Snow",
+    day: true,
+    url: new URL("../assets/day/snow.png", import.meta.url).href,
   },
   {
+    condition: "Snow",
     day: false,
-    condition: "thunderstorm",
-    url: new URL("../assets/night/storm.png", import.meta.url).href,
+    url: new URL("../assets/night/snow.png", import.meta.url).href,
   },
 ];
 
-export const coordinates = {
-  latitude: 35.661368,
-  longitude: 139.737601,
-};
-
+// Default fallback images
 export const defaultWeatherOptions = {
   day: {
     url: new URL("../assets/day/default.png", import.meta.url).href,
@@ -76,4 +51,11 @@ export const defaultWeatherOptions = {
   },
 };
 
+// Your OpenWeather API key
 export const APIkey = "610ee56d12a094373a1043bb40f39c41";
+
+// Default coordinates (fallback if geolocation fails)
+export const defaultCoordinates = {
+  latitude: 35.661368,
+  longitude: 139.737601,
+};
