@@ -15,6 +15,8 @@ import { defaultCoordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -28,6 +30,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const closeAllModals = () => {
     setActiveModal("");
