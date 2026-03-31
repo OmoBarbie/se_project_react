@@ -3,6 +3,8 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import "./App.css";
 
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
@@ -40,6 +42,14 @@ function App() {
   const closeAllModals = () => {
     setActiveModal("");
     setSelectedCard(null);
+  };
+
+  const handleRegisterClick = () => {
+    setActiveModal("register");
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
   };
 
   const handleCardClick = (card) => {
@@ -188,6 +198,8 @@ function App() {
           <div className="page__content">
             <Header
               handleAddClick={handleAddClick}
+              handleRegisterClick={handleRegisterClick}
+              handleLoginClick={handleLoginClick}
               weatherData={weatherData}
               passedUsername={"Tayo"}
               isLoggedIn={isLoggedIn}
@@ -227,6 +239,18 @@ function App() {
             onCloseModal={closeAllModals}
             onAddItem={handleAddItemSubmit}
             isOpen={activeModal === "add-garment"}
+          />
+
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onClose={closeAllModals}
+            onRegister={handleRegister}
+          />
+
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeAllModals}
+            onLogin={handleLogin}
           />
 
           <ItemModal
