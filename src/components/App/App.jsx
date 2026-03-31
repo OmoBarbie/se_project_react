@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import "./App.css";
 
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Profile from "../Profile/Profile.jsx";
@@ -208,15 +209,13 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  isLoggedIn ? (
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                     />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
+                  </ProtectedRoute>
                 }
               />
             </Routes>
