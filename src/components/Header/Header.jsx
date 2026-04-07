@@ -24,7 +24,6 @@ const Header = ({
     day: "numeric",
   });
 
-  const username = passedUsername || "";
   const avatar = avatarDefault;
 
   return (
@@ -55,7 +54,7 @@ const Header = ({
                 <Link to="/profile" className="navigation__link">
                   {currentUser.name || "Anonymous"}
 
-                  {avatar ? (
+                  {currentUser ? (
                     <img
                       className="navigation__user"
                       src={currentUser.avatar || avatar}

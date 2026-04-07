@@ -81,7 +81,7 @@ function App() {
         setCurrentUser(userData);
         setIsLoggedIn(true);
         closeAllModals();
-        navigate("/profile");
+        navigate("/");
       })
       .catch(console.error);
   };

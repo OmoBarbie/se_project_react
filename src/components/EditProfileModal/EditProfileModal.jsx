@@ -5,15 +5,15 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
-
+  console.log("Current user in EditProfileModal:", currentUser);
   const {
     values,
     errors,
     handleChange,
     handleSubmitAttempt,
-    resetForm,
     submitted,
     setSubmitted,
+    setValues,
   } = useFormWithValidation({
     name: "",
     avatar: "",
@@ -21,13 +21,13 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
 
   React.useEffect(() => {
     if (isOpen) {
-      resetForm({
+      setValues({
         name: currentUser.name || "",
         avatar: currentUser.avatar || "",
       });
       setSubmitted(false);
     }
-  }, [isOpen, currentUser, setSubmitted]);
+  }, [isOpen, currentUser, setSubmitted, setValues]);
 
   function handleSubmit(evt) {
     const ok = handleSubmitAttempt(evt);

@@ -77,8 +77,9 @@ GET /items
 POST /items
 DELETE /items/:id
 
-Pictures, GIFs, or screenshots that detail project features (highly
-recommended)
+### Back-end Repository Link
+
+https://github.com/OmoBarbie/se_project_express
 
 A demo video of your project (highly recommended)
 

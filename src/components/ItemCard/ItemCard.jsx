@@ -29,9 +29,7 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
 
-        {/* {isLoggedIn && (
-         */}
-        {
+        {isLoggedIn && (
           <button
             type="button"
             className={`card__like-button ${
@@ -41,7 +39,7 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
           >
             {" "}
           </button>
-        }
+        )}
       </div>
 
       <img
