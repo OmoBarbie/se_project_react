@@ -3,9 +3,9 @@
   /* flex-direction: row-reverse; */
   align-items: center;
   gap: 16px;
+  margin-bottom: 24px;
 }
 .sidebar__avatar {
-  margin-left: 12px;
   flex: 0 0 40px;
   width: 56px;
   height: 56px;
@@ -20,4 +20,15 @@
   font-weight: 700;
   font-size: 20px;
   white-space: nowrap;
+}
+
+.sidebar__button {
+  font-weight: 700;
+  display: block;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
 }

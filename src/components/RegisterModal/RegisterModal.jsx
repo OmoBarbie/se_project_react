@@ -42,7 +42,7 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       isSubmitDisabled={false}
     >
       <label className="modal__label">
-        Email
+        Email*
         <input
           type="email"
           name="email"
@@ -64,7 +64,7 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       </label>
 
       <label className="modal__label">
-        Password
+        Password*
         <input
           type="password"
           name="password"
@@ -86,7 +86,7 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       </label>
 
       <label className="modal__label">
-        Name
+        Name*
         <input
           type="text"
           name="name"
@@ -109,7 +109,7 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       </label>
 
       <label className="modal__label">
-        Avatar URL
+        Avatar URL*
         <input
           type="url"
           name="avatar"

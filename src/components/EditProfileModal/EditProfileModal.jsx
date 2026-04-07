@@ -27,7 +27,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
       });
       setSubmitted(false);
     }
-  }, [isOpen, currentUser, resetForm, setSubmitted]);
+  }, [isOpen, currentUser, setSubmitted]);
 
   function handleSubmit(evt) {
     const ok = handleSubmitAttempt(evt);
@@ -48,7 +48,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
       isSubmitDisabled={false}
     >
       <label className="modal__label">
-        Name
+        Name*
         <input
           type="text"
           name="name"

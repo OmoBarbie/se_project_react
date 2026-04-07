@@ -42,7 +42,7 @@
   position: relative;
   padding: 29px 28px 36px;
   max-width: 496px;
-  min-height: 436px;
+  /* min-height: 436px; */
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
@@ -89,15 +89,14 @@
 
 .modal__submit {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   border-radius: 4px;
   gap: 8px;
-  width: 124px;
-  height: 26px;
+  width: 130px;
+  height: 36px;
   padding: 8px 16px;
   margin-top: 14px;
   background-color: rgba(0, 0, 0, 0.3);
-  height: 36px;
   color: rgb(255, 255, 255);
 }
 
@@ -106,7 +105,7 @@
 }
 
 .modal__submit:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 1);
   cursor: pointer;
 }
 

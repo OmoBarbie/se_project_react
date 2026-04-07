@@ -26,7 +26,7 @@ function SideBar({ handleEditProfileClick, onSignOut }) {
       </button>
 
       <button type="button" className="sidebar__button" onClick={onSignOut}>
-        Sign out
+        Log out
       </button>
     </aside>
   );
