@@ -16,8 +16,8 @@ const Header = ({
   onSignOut,
   passedUsername,
 }) => {
-  if (!weatherData) return null;
   const currentUser = useContext(CurrentUserContext);
+  if (!weatherData) return null;
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -54,7 +54,7 @@ const Header = ({
                 <Link to="/profile" className="navigation__link">
                   {currentUser.name || "Anonymous"}
 
-                  {currentUser ? (
+                  {currentUser.avatar ? (
                     <img
                       className="navigation__user"
                       src={currentUser.avatar || avatar}
