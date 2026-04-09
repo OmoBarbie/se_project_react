@@ -14,7 +14,6 @@ const Header = ({
   handleLoginClick,
   isLoggedIn,
   onSignOut,
-  passedUsername,
 }) => {
   const currentUser = useContext(CurrentUserContext);
   if (!weatherData) return null;

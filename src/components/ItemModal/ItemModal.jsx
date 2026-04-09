@@ -1,9 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./ItemModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, onDeleteCard }) {
   const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    if (activeModal !== "preview") return;
+
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal, onClose]);
+
+  const handleOverlayClose = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      onClose();
+    }
+  };
 
   if (!card) return null;
 
@@ -16,7 +38,10 @@ function ItemModal({ activeModal, onClose, card, onDeleteCard }) {
   };
 
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_open" : ""}`}>
+    <div
+      className={`modal ${activeModal === "preview" ? "modal_open" : ""}`}
+      onClick={handleOverlayClose}
+    >
       <div className="modal__content modal__content_type_image">
         <button
           onClick={onClose}

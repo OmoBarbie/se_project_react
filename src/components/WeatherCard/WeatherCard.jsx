@@ -20,6 +20,8 @@ function WeatherCard({ weatherData }) {
     weatherOption = filteredOptions[0];
   }
 
+  console.log("WeatherCard received weatherData:", weatherOption);
+
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
