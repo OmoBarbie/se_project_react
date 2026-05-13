@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "put the URL for your deployed backend here, including https://"
+    : "http://localhost:3001";
 
 // SIGN UP
 export const register = ({ name, avatar, email, password }) => {

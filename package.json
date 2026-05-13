@@ -1,5 +1,6 @@
 {
   "name": "se_project_react",
+  "homepage": "https://tayowtwr.minecraftnoob.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "deploy": "npm run build && scp -r ./dist/* tayodaniel@//tayowtwr.minecraftnoob.com:/home/tayodaniel/frontend",
     "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
