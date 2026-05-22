@@ -1,0 +1,42 @@
+
+
+server {
+  listen 443 ssl;
+  server_name api.tayowtwr.minecraftnoob.com;
+
+  ssl_certificate /etc/letsencrypt/livetayowtwr.minecraftnoob.com//fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/tayowtwr.minecraftnoob.com/privkey.pem;
+  include /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+  location / {
+    proxy_pass http://localhost:3001;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+
+  server_name tayowtwr.minecraftnoob.com www.tayowtwr.minecraftnoob.com
+server {
+  listen 443 ssl;;
+
+  root /home/tayodaniel/frontend;
+
+  ssl_certificate /etc/letsencrypt/live/tayowtwr.minecraftnoob.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/tayowtwr.minecraftnoob.com/privkey.pem;
+  include /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+  location / {
+    try_files $uri $uri/ /index.html =404;
+  }
+}
+
+server {
+  listen 80;
+  server_name tayowtwr.minecraftnoob.com www.tayowtwr.minecraftnoob.com api.tayowtwr.minecraftnoob.com;
+  return 301 https://$host$request_uri;
+}
